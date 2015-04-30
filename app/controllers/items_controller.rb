@@ -16,7 +16,7 @@
 
 
 
-class ItemController < ApplicationController
+class ItemsController < ApplicationController
   def index
   	@current_items = Item.active.alphabetical.paginate(page: params[:page]).per_page(12)
   end
