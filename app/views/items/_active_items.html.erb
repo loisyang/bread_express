@@ -1,0 +1,31 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Picture</th>
+			<th>Description</th>
+			<th class="centered">Price</th>
+      <th class="centered">Category</th>
+      <th class="centered">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @active_items.each do |item| %>
+			<% if can? :read, item %>
+	      <tr>
+	        <td><%= link_to item.name, item_path(item) %></td>
+					<td><%= item.picture unless item.picture == nil %></td>
+	        <td><%= item.description unless item.description == nil %></td>
+					<td class="centered"><%= item.current_price %></td>
+          <td class="centered"><%= item.category %></td>
+	        <td>
+            <%= link_to("Edit", edit_item_path(item), class: "button radius")  %>
+            <%= link_to("Delete", item_path(item), class: "button radius", method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) %>
+					</td>
+	      </tr>
+			<% end %>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @active_items, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>	
+

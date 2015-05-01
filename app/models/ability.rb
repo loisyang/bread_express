@@ -28,33 +28,38 @@ class Ability
       # they can create new addresses for themselves
       can :create, Address
       
-      # they can update the project only if they are the manager (creator)
-      can :update, Project do |this_project|
-        managed_projects = user.projects.map{|p| p.id if p.manager_id == user.id}
-        managed_projects.include? this_project.id
-      end
+      # # they can update the project only if they are the manager (creator)
+      # can :update, Project do |this_project|
+      #   managed_projects = user.projects.map{|p| p.id if p.manager_id == user.id}
+      #   managed_projects.include? this_project.id
+      # end
             
-      # they can read tasks in these projects
-      can :read, Task do |this_task|  
-        project_tasks = user.projects.map{|p| p.tasks.map(&:id)}.flatten
-        project_tasks.include? this_task.id 
-      end
+      # # they can read tasks in these projects
+      # can :read, Task do |this_task|  
+      #   project_tasks = user.projects.map{|p| p.tasks.map(&:id)}.flatten
+      #   project_tasks.include? this_task.id 
+      # end
       
-      # they can update tasks in these projects
-      can :update, Task do |this_task|  
-        project_tasks = user.projects.map{|p| p.tasks.map(&:id)}.flatten
-        project_tasks.include? this_task.id 
-      end
+      # # they can update tasks in these projects
+      # can :update, Task do |this_task|  
+      #   project_tasks = user.projects.map{|p| p.tasks.map(&:id)}.flatten
+      #   project_tasks.include? this_task.id 
+      # end
       
-      # they can create new tasks for these projects
-      can :create, Task do |this_task|  
-        my_projects = user.projects.map(&:id)
-        my_projects.include? this_task.project_id  
-      end
+      # # they can create new tasks for these projects
+      # can :create, Task do |this_task|  
+      #   my_projects = user.projects.map(&:id)
+      #   my_projects.include? this_task.project_id  
+      # end
+
+    elsif user.role? :baker
+
+    elsif user.role? :shipper
 
     else
       # guests can only read domains covered (plus home pages)
-      can :read, Domain
+      can :read, Item
+      can :show, Item
     end
   end
 end

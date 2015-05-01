@@ -17,10 +17,17 @@
 
 
 class ItemsController < ApplicationController
+
   def index
-  	@current_items = Item.active.alphabetical.paginate(page: params[:page]).per_page(12)
+  	@active_items = Item.active.alphabetical.paginate(page: params[:page]).per_page(12)
+  	@inactive_items = Item.inactive.alphabetical.paginate(page: params[:page]).per_page(12)
   end
+
   def show
-  	
+    @item = Item.find(params[:id])
+    authorize! :read, @item
+    @related_items = Item.for_category(@item.category).alphabetical.paginate(page: params[:page]).per_page(10)
+    # @item = @project.tasks.chronological.by_priority.paginate(page: params[:page]).per_page(10)
+    # @project_assignments = @project.assignments.by_user.paginate(page: params[:page]).per_page(8)
   end
 end
