@@ -66,7 +66,7 @@ class ItemsController < ApplicationController
       flash[:notice] = "#{@item.name} has been created."
       redirect_to @item # go to show task page
     else
-      # return sto the 'new' form
+      # return to the 'new' form
       render :action => 'new'
     end
   end
