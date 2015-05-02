@@ -1,9 +1,9 @@
 <div class="row">
 	<div class="medium-10 medium-offset-1 columns">
     <% if @active_items.empty? %>
-      <h3>Empty Menu</h3>
+      <h3>No active items at this time.</h3>
     <% else %>
-      <h3>Current Menu</h3>
+      <h3>Available Items</h3>
       <%= render :partial => "active_items" %>
     <% end %>
 	</div>

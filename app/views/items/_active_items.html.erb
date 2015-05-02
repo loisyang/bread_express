@@ -6,6 +6,7 @@
 			<th>Description</th>
 			<th class="centered">Price</th>
       <th class="centered">Category</th>
+      <th class="centered">Units</th>
       <th class="centered">Actions</th>
     </tr>
   </thead>
@@ -22,8 +23,15 @@
             <% end %>
           </td>
 	        <td><%= item.description unless item.description == nil %></td>
-					<td class="centered"><%= item.current_price %></td>
+					<td class="centered">$<%= format('%.02f', item.current_price) %></td>
           <td class="centered"><%= item.category %></td>
+          <td class="centered"><%= item.units_per_item %>
+            <% if item.category=="bread" %>
+              <%= "loaf" %>
+            <% else %>
+              <%= item.category %>
+            <% end%>
+          </td>
 	        <td>
           <p>
             <%= link_to("Edit", edit_item_path(item), class: "button secondary tiny radius")  %> 

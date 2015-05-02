@@ -5,9 +5,17 @@
 </p>
 
 <p>
-  <b>Current Price</b>: <%= @item.current_price %> 
+  <b>Current Price</b>:$<%= format('%.02f', @item.current_price) %>
 </p>
 
 <p>
   <b>Category</b>: <%= @item.category %>
 </p>
+
+<p>
+  <b>Total weight</b>: <%= @item.weight %> lbs. 
+</p>
+
+<% if current_user.role? :admin %>
+  <% render :partial => "/itemprices/form" %>
+<% end %>
