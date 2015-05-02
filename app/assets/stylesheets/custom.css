@@ -1,0 +1,22 @@
+*, h1, h2, h3, h4, h5, h6, p, a, li, ul {
+  font-family: 'Lato', sans-serif;
+}
+
+footer {
+  padding-top: 2%;
+}
+
+#title_area {
+  padding: 1% 5%;
+}
+
+#title_area a {
+  font-family: 'Rock Salt', cursive; 
+  color: #1e1933;
+  font-size: 1em;
+}
+
+#title_area a:hover{
+  color: #fff;
+}
+

@@ -27,7 +27,53 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     authorize! :read, @item
     @related_items = Item.for_category(@item.category).alphabetical.paginate(page: params[:page]).per_page(10)
-    # @item = @project.tasks.chronological.by_priority.paginate(page: params[:page]).per_page(10)
-    # @project_assignments = @project.assignments.by_user.paginate(page: params[:page]).per_page(8)
   end
+
+  def edit 
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to items_path, notice: "The item was revised in the system."
+    else
+      render action: 'edit'
+    end
+  end
+  
+  def destroy
+    @item = Item.find(params[:id])
+    status = @item.destroy
+    if status
+      flash[:notice] = "Successfully removed #{@item.name} from Bread Express."
+    else
+      flash[:error] = "#{@item.name} could not be deleted because it's been in orders, but has been inactive as of today."
+    end
+    redirect_to :action => "index"
+  end
+
+  def new
+    @item = Item.new
+    authorize! :new, @item
+  end
+
+  def create
+    @item = Item.new(item_params)
+    authorize! :create, @item
+    if @item.save
+      # if saved to database
+      flash[:notice] = "#{@item.name} has been created."
+      redirect_to @item # go to show task page
+    else
+      # return sto the 'new' form
+      render :action => 'new'
+    end
+  end
+
+  private
+  def item_params
+    params.require(:item).permit(:name, :description, :picture, :category, :units_per_item, :weight, :active)
+  end
+
 end

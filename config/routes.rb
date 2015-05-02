@@ -26,7 +26,7 @@ BreadExpress::Application.routes.draw do
   root :to => 'home#home'  
   
   # Named routes
-
+  get 'item/index' => 'item#index'
 
 
   

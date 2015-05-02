@@ -1,0 +1,39 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Picture</th>
+      <th>Description</th>
+      <th class="centered">Price</th>
+      <th class="centered">Category</th>
+      <th class="centered">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @inactive_items.each do |item| %>
+      <% if can? :read, item %>
+        <tr>
+          <td><%= link_to item.name, item_path(item) %></td>
+          <td>
+            <% if item.picture_url == nil%>
+              <p>N/A</p>
+            <% else %>
+              <%= image_tag item.picture_url %>
+            <% end %>
+          </td>
+          <td><%= item.description unless item.description == nil %></td>
+          <td class="centered"><%= item.current_price %></td>
+          <td class="centered"><%= item.category %></td>
+          <td>
+            <p>
+            <%= link_to("Edit", edit_item_path(item), class: "button secondary tiny radius")  %>
+
+            <%= link_to(item_path(item), class: 'button tiny radius alert', method: 'delete', data: {confirm: "Are you sure you want to permanently delete this item"}) do %>Delete<% end %></p>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @inactive_items, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+

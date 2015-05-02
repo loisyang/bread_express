@@ -14,13 +14,20 @@
 			<% if can? :read, item %>
 	      <tr>
 	        <td><%= link_to item.name, item_path(item) %></td>
-					<td><%= item.picture unless item.picture == nil %></td>
+					<td>
+            <% if item.picture_url == nil%>
+              <p>N/A</p>
+            <% else %>
+              <%= image_tag item.picture_url %>
+            <% end %>
+          </td>
 	        <td><%= item.description unless item.description == nil %></td>
 					<td class="centered"><%= item.current_price %></td>
           <td class="centered"><%= item.category %></td>
 	        <td>
-            <%= link_to("Edit", edit_item_path(item), class: "button radius")  %>
-            <%= link_to("Delete", item_path(item), class: "button radius", method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) %>
+          <p>
+            <%= link_to("Edit", edit_item_path(item), class: "button secondary tiny radius")  %> 
+            <%= link_to(item_path(item), class: 'button tiny radius alert', method: 'delete', data: {confirm: "Are you sure you want to permanently delete this item"}) do %>Delete<% end %></p>
 					</td>
 	      </tr>
 			<% end %>

@@ -1,10 +1,5 @@
 <div class="row">
-	<!-- a side bar showing the categories -->
-	<div class="medium-4 columns">
-	 <%= render :partial => "side_bar" %>
-  </div>
-
-	<div class="medium-8 columns">
+	<div class="medium-10 medium-offset-1 columns">
     <% if @active_items.empty? %>
       <h3>Empty Menu</h3>
     <% else %>
@@ -14,17 +9,21 @@
 	</div>
 </div>
 
-<% if logged_in? && @current_user.role?(:admin) %>
+<% if logged_in? && current_user.role?(:admin) %>
 	<div class="row">
-		<div class="medium-8 medium-offset-4 columns">
+		<div class="medium-10 medium-offset-1 columns">
+      <h3>Inactive Items</h3>
 			<%= render :partial => "inactive_items" unless @inactive_items.empty? %>
 		</div>
 	</div>
 
 	<!-- Add a button for new projects -->
-	<%= link_to(new_item_path, class: "button radius") do %>
-	  <i class="fa fa-plus"></i>
-	  &nbsp;Add a New Item
-	<% end %>
+  <div class="row">
+    <div class="medium_10 medium-offset-1 columns">
+    	<%= link_to(new_item_path, class: "button radius") do %>
+    	  &nbsp;Add a New Item
+    	<% end %>
+    </div>
+  </div>
 <% end %>
 

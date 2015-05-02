@@ -1,5 +1,5 @@
-<% if @item.picture == nil %>
-  <%= %>
+<% if @item.picture_url.nil? %>
+  <p><%= image_tag ('placeholder.png')%></p>
 <% else %>
-  <%= @item.picture %>
+  <p><%= image_tag @item.picture_url %></p>
 <% end %>
