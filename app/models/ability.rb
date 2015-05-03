@@ -28,6 +28,9 @@ class Ability
       # they can create new addresses for themselves
       can :create, Address
       
+      can :read, Item
+
+      cannot :new, Item
       # # they can update the project only if they are the manager (creator)
       # can :update, Project do |this_project|
       #   managed_projects = user.projects.map{|p| p.id if p.manager_id == user.id}

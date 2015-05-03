@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Price</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @all_item_prices.each do |item_price| %>
+      <% if can? :read, item_price %>
+        <tr>
+          <td><%= link_to item_price.item.name, item_path(item_price.item) %></td>
+          <td>$<%= format('%.02f',item_price.price) %></td>
+          <td><%= item_price.start_date%></td>
+          <td><%= item_price.end_date %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @all_item_prices, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+

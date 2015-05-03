@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     if logged_in?
       # get my orders
       if current_user.role? :customer
-        @orders= current_user.orders.chronological.to_a
+        @orders= current_user.customer.orders.chronological.to_a
         order_ids = @orders.map(&:id)
         
         # get my paid orders

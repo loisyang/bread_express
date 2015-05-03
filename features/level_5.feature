@@ -105,7 +105,7 @@ Feature: Manage items
   Scenario: Creating a new item fails if not an admin
     Given a logged-in customer
     When I go to the new item page
-    Then I should see "You are not authorized to take this action"
+     Then I should see "You are not authorized to take this action"
     And I should not see "Description"
 
   

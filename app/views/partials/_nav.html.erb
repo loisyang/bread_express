@@ -28,7 +28,7 @@
         <!-- ADMIN ONLY OPTIONS -->
         <% if logged_in? && current_user.role == "admin" %>
             <li><%= link_to "Items", items_path %></li>
-            <li><%= link_to "Item Prices", item_prices_path %></li>
+            <li><%= link_to "Finance", item_prices_path %></li>
 
           <% end %>
         </ul>

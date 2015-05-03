@@ -1,0 +1,20 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Price</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @item_prices.each do |item_price| %>
+      <% if can? :read, item_price %>
+        <tr>
+          <td>$<%= format('%.02f', item_price.price) %></td>
+          <td><%= item_price.start_date %></td>
+          <td><%= item_price.end_date %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

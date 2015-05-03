@@ -26,7 +26,8 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     authorize! :read, @item
-    @related_items = Item.for_category(@item.category).alphabetical.paginate(page: params[:page]).per_page(10)
+    @similar_items = Item.for_category(@item.category).alphabetical.paginate(page: params[:page]).per_page(10)
+    @item_prices = Item.find(params[:id]).item_prices.chronological
   end
 
   def edit 
@@ -55,7 +56,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    authorize! :new, @item
+    authorize! :new, @item, :message => "You are not authorized to take this action."
   end
 
   def create
@@ -63,7 +64,7 @@ class ItemsController < ApplicationController
     authorize! :create, @item
     if @item.save
       # if saved to database
-      flash[:notice] = "#{@item.name} has been created."
+      flash[:notice] = "#{@item.name} was added to the system."
       redirect_to @item # go to show task page
     else
       # return to the 'new' form

@@ -1,0 +1,29 @@
+<h3>Similar Items</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Picture</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @similar_items.each do |item| %>
+      <% if can? :read, item %>
+        <tr>
+          <td><%= link_to item.name, item_path(item) %></td>
+          <td>
+            <% if item.picture_url == nil%>
+              <p>N/A</p>
+            <% else %>
+              <%= image_tag item.picture_url %>
+            <% end %>
+          </td>
+          <td><%= item.description unless item.description == nil %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @similar_items, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+

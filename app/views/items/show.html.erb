@@ -13,6 +13,28 @@
   </div>
 </div>
 
-<!-- Add buttons to list all, edit project or destroy project -->
-<%= render :partial => "item_list_edit_destroy" %>
+<% if logged_in? && current_user.role?(:admin) %>
+  <div class="row">
+    <div class="medium-8 medium-offset-4 columns">
+      <p><b>Price History:</b></p>
+      <%= render :partial => "/item_prices/price_history" unless @item_prices.empty? %>
+    </div>
+  </div>
+
+  <!-- Add a button for new projects -->
+  <div class="row">
+    <div class="medium_8 medium-offset-4 columns">
+      <%= link_to(new_item_price_path, class: "button radius") do %>
+        &nbsp;Add a New Item Price
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if logged_in? && current_user.role?(:customer) %>
+  <div class="small-10 small-offset-1 columns">
+    <%= render :partial => "similar_items" unless @similar_items.empty? %>
+  </div>
+</div>
+<% end %>
 

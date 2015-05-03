@@ -1,0 +1,30 @@
+<% if logged_in? && current_user.role?(:admin) %>
+  
+  <div class="row">
+    <div class="medium-10 medium-offset-1 columns">
+      <% if @all_item_prices.empty? %>
+        <h3>No item prices at this time.</h3>
+      <% else %>
+        <h3>Available Item Prices</h3>
+        <%= render :partial => "all_item_prices" %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="medium-10 medium-offset-1 columns">
+      <h3>Current Item Prices</h3>
+      <%= render :partial => "current_item_prices" unless @current_item_prices.empty? %>
+    </div>
+  </div>
+
+  <!-- Add a button for new projects -->
+  <div class="row">
+    <div class="medium_10 medium-offset-1 columns">
+      <%= link_to(new_item_price_path, class: "button radius") do %>
+        &nbsp;Add a New Item Price
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
