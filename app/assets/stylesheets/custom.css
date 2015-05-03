@@ -1,22 +1,139 @@
-*, h1, h2, h3, h4, h5, h6, p, a, li, ul {
+/*typography*/
+*, h1, h2, h3, h4, h5, h6, p, a.button, a, li, ul {
   font-family: 'Lato', sans-serif;
 }
 
+.text-centered{
+  text-align: center;
+}
+
+.serif{
+  font-family: 'Vollkorn', serif;
+}
+
+.cursive{
+  font-family: 'Rock Salt', cursive;   
+}
+.italic{
+  font-style: italic;
+}
 footer {
   padding-top: 2%;
 }
 
-#title_area {
-  padding: 1% 40%;
+/* header area */
+#header {
+  height: 120px;
+  z-index: 99;
+  width:100%;
+  position:fixed;
 }
 
-#title_area a {
-  font-family: 'Rock Salt', cursive; 
-  color: #1e1933;
+/* logo area */
+#title{
+  height: 70px;
+  background-color: #2e2e2e;
+  padding: 1% ;
+  text-align: center;
+}
+
+#title a {
+  color: #fff;
   font-size: 1em;
 }
 
-#title_area a:hover{
+#title a:hover{
+  color: #efefef;
+}
+
+/*nav bar (inherited in #header id) */
+#navbar{
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255,255,255,0.3);
+  color:#2e2e2e;
+}
+.contain-to-grid{
+  height: 50px;
+  background-color: rgba(255,255,255,0.3);
+  color:#2e2e2e;
+}
+.top-bar{
+  height: 50px;
+  background-color: rgba(255,255,255,0.3);
+  color:#2e2e2e;
+}
+.top-bar-section ul{
+  height: 50px;
+  background: none;
+}
+
+#navbar ul>li{
+  height: 50px;
+  transition: background-color 300ms ease-out;
+}
+#navbar ul>li:hover{
+  background-color: #2e2e2e;
+}
+#navbar ul>li>a{
+  background: rgba(255,255,255,0);
+  color:#2e2e2e;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+#navbar ul>li>a:hover{
   color: #fff;
+}
+
+#main_content{
+  min-height: 500px;
+  margin: 0;
+  padding-top: 120px;
+}
+
+#landing_page {
+  min-height: 700px;
+  background-image: url("landing_page.jpg");
+}
+
+#landing_page .textbox{
+  text-align: center;
+  padding-top: 16%;
+}
+
+#landing_page a.button.round{
+  background-color: #2e2e2e;
+  font-family: 'Lato', sans-serif;
+  margin-top: 3%;
+  height: 40px;
+  text-align: center;
+}
+
+#landing_page a.button.round:hover{
+  background-color: #fff;
+  color: #2e2e2e;
+}
+
+#login{
+  min-height: 600px;
+  padding-left: 25%;
+  padding-top:10%;
+}
+#login h3{
+  padding-left: 6%;
+  margin-bottom: 5%
+}
+
+#footer {
+  padding-top: 0;
+  margin: 0;
+  background-color: #2e2e2e;
+  color: #fff;
+}
+#footer a{
+  color: #fff;
+}
+#footer a:hover{
+  color: #afafaf;
 }
 

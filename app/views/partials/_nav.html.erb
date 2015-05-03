@@ -29,21 +29,25 @@
         <% if logged_in? && current_user.role == "admin" %>
             <li><%= link_to "Items", items_path %></li>
             <li><%= link_to "Finance", item_prices_path %></li>
-
-          <% end %>
-        </ul>
-
+        <% end %>
+      </ul>
+        
+      <ul class="right">
         <% if logged_in? %>
-          <ul class="right">
-            <li class="has-dropdown">
-            <%= link_to "Welcome, #{current_user.role.capitalize} #{current_user.username.capitalize}", user_path(current_user) %>
-            <ul class="dropdown">
-              <li><%= link_to "Edit settings", edit_user_path(current_user) %></li>
-              <li><%= link_to "Logout", logout_path %></li>
-            </ul>
+          <li class="has-dropdown">
+          <%= link_to "Welcome, #{current_user.role.capitalize} #{current_user.username.capitalize}", user_path(current_user) %>
+          <ul class="dropdown">
+            <li><%= link_to "Edit settings", edit_user_path(current_user) %></li>
+            <li><%= link_to "Logout", logout_path %></li>
+          </ul>
           </li>
         <% end %>
 
+        <% if !logged_in? %>
+          <li><%= link_to "Login",login_path %></li>
+          <li><%= link_to "Sign up", signup_path %></li>
+        <% end %>
+      </ul>
     </section>
   </nav>
 </div>

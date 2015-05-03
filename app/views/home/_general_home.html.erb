@@ -1,23 +1,16 @@
-<h2>Welcome To A &amp; M Bread Express</h2>
-<br />
-<div class="row">
-	<div class="small-7 columns">
-		<p>Bread Express is a Pittsburgh bakery dedicated to producing artisanal, handmade bread, muffins and pastries using traditional baking techniques.  Most of the artisan pastries we bake are gluten-free and have gone through a slow baking process, which improves the taste and your experience.</p>
-​		<p>We let our work speak for itself.</p>
-	</div>
-	<div class="small-1 columns">
-		&nbsp;
-	</div>
-	<div class="small-4 columns">
-		<div class="panel clearfix">
-			<h3>Online Order:</h3>
-			<p>
-				If you are a registered user, 
-			  <%= link_to "click here to login", login_path %>. If you want 
-			  to create an account with us, <%= link_to "please click to register", signup_path %>.
-			</p>
-		</div>
+<div id="landing_page">
+	<div class="textbox">
+		<h2>Welcome To A &amp; M Bread Express!</h2>
+​			<h5 class="serif">Muffins | Pastries | Bread</h5>
+			<h5 class="serif italic">"Tastes good. Damn good."</h5>
+		<% if logged_in? &&( current_user.role? :customer) %>
+			<%= link_to("Order Now", items_path, class: "button round")  %> 
+		<% elsif logged_in? && ((current_user.role? :admin) || (current_user.role? :baker) || (current_user.role? :shipper)) %>
+		<% else %>
+			<%= link_to("Sign Up", signup_path, class: "button round")  %> 
+		<% end %>
 	</div>
 </div>
+
 
 

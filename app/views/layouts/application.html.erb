@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Jingqi Yang">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,400italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,400' rel='stylesheet' type='text/css'>
     <title>A &amp; M Bread Express</title>
     <%= stylesheet_link_tag    "application" %>
     <%= stylesheet_link_tag    "custom" %>    
@@ -13,19 +15,20 @@
   </head>
 
   <body>
-    <div class="centered" id="title_area">
-      <%= link_to 'A & M Bread Express', home_path %>
-    </div>
-    <%= render :partial => "partials/nav" %>
-    
-    <div class="row">
-      <div class="small-12 columns" id="main_content">
-        <%= render :partial => "partials/flash" %>
-        <%= yield %>
+    <div class="centered" id="header">
+      <div id="title">
+        <%= link_to 'A & M Bread Express', home_path, class: "cursive" %>
+      </div>
+      <div id="navbar">
+        <%= render :partial => "partials/nav" %>
       </div>
     </div>
-    <footer>
-      <div class="small-12 columns" id="footer">
+
+    <div class="centered" id="main_content">
+        <%= render :partial => "partials/flash" %>
+        <%= yield %>
+    </div>
+    <footer id="footer">
         <%= render partial: 'partials/footer' %>
       </div>
     </footer> 
