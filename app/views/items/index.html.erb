@@ -1,9 +1,9 @@
 <div class="row">
 	<div class="medium-10 medium-offset-1 columns">
     <% if @active_items.empty? %>
-      <h3>No active items at this time.</h3>
+      <h3 class="text-centered">No active items at this time.</h3>
     <% else %>
-      <h3>Available Items</h3>
+      <h3 class="text-centered">Available Items</h3>
       <%= render :partial => "active_items" %>
     <% end %>
 	</div>
@@ -12,7 +12,7 @@
 <% if logged_in? && current_user.role?(:admin) %>
 	<div class="row">
 		<div class="medium-10 medium-offset-1 columns">
-      <h3>Inactive Items</h3>
+      <h3 class="text-centered">Inactive Items</h3>
 			<%= render :partial => "inactive_items" unless @inactive_items.empty? %>
 		</div>
 	</div>

@@ -14,6 +14,7 @@ BreadExpress::Application.routes.draw do
   get 'cart/newCartItem' => 'carts#newCartItem', as: :newCartItem_cart
   get 'cart' => 'carts#show'
   get 'cart/show' => 'carts#show', as: :show_current_cart
+  post 'cart/show' => 'carts#clear'
   delete 'cart/show' => 'carts#destory'
   put 'cart/show' => 'carts#add'
   get 'cart/edit' => 'carts#edit', as: :edit_current_cart  

@@ -34,7 +34,9 @@
         
       <ul class="right">
         <% if logged_in? %>
-          <li><%= link_to "Cart", show_current_cart_path %></li>
+          <% if current_user.role? :customer %>
+            <li><%= link_to "Cart", show_current_cart_path %></li>
+          <% end %>
           <li class="has-dropdown">
           <%= link_to "Welcome, #{current_user.role.capitalize} #{current_user.username.capitalize}", user_path(current_user) %>
           <ul class="dropdown">

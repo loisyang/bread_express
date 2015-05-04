@@ -95,7 +95,7 @@ footer {
 }
 
 #main_content{
-  min-height: 500px;
+  min-height: 700px;
   margin: 0;
   padding-top: 120px;
 }
@@ -145,5 +145,6 @@ footer {
 #footer a:hover{
   color: #afafaf;
 }
+
 
 

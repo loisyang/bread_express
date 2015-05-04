@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   include BreadExpressHelpers::Cart
-  
+
   before_action :check_login
   before_action :set_order, only: [:show, :update, :destroy]
   authorize_resource
@@ -25,7 +25,8 @@ class OrdersController < ApplicationController
   end
 
   def new
-
+    @order = Order.new
+    save_each_item_in_cart(@order)
   end
 
   def create

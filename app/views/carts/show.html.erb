@@ -1,7 +1,8 @@
 <div class="row">
   <div class="small-10 small-offset-1 columns">
-    <% if @cart_items.nil? %>
-      <h4 class="text-centered">There are no items in cart.</h4> 
+    <% if @cart_items.empty? %>
+      <h4 class="text-centered">There are no items in cart now.</h4> 
+      <p><%= link_to(items_path, class: 'button radius ') do %>Continue Shopping<% end %></p>
     <% else %>
       <h4>Your Cart</h4>
       <table class="table">
@@ -32,7 +33,9 @@
         </tbody>
       </table>
       <h4><b>Total Cost:</b> $<%= @cart_cost%></h4>
-      <%= link_to(new_order_path, class: 'button radius ') do %>Check Out<% end %></p>
+      <p><%= link_to('Check Out', new_order_path, class: 'button radius') %></p>
+      <p><%= link_to('Continue Shopping', items_path, class: 'button radius') %></p>
+      <p><%= link_to 'Clear the cart', show_current_cart_path, method: 'post',data: {confirm: "Are you sure you want to clear all items from your cart?"}, class: "button alert radius" %></p>
     <% end %>
   </div>
 </div>
