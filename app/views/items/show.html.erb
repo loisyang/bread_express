@@ -13,6 +13,7 @@
   </div>
 </div>
 
+<!-- Only admin can see price history and make modifications -->
 <% if logged_in? && current_user.role?(:admin) %>
   <div class="row">
     <div class="medium-8 medium-offset-4 columns">
@@ -21,20 +22,24 @@
     </div>
   </div>
 
-  <!-- Add a button for new projects -->
+  <!-- Add buttons for New Price, Edit and Delete -->
   <div class="row">
     <div class="medium_8 medium-offset-4 columns">
-      <%= link_to(new_item_price_path, class: "button radius") do %>
+      <%= link_to(new_item_price_path(item_param: @item), class: "button radius") do %>
         &nbsp;Add a New Item Price
       <% end %>
+      <%= link_to("Update Info", edit_item_path(@item), class: "button radius")  %> 
+      <%= link_to(item_path(@item), class: 'button radius alert', method: 'delete', data: {confirm: "Are you sure you want to permanently delete this item"}) do %>Delete Item<% end %>
     </div>
   </div>
 <% end %>
 
-<% if logged_in? && current_user.role?(:customer) %>
-  <div class="small-10 small-offset-1 columns">
-    <%= render :partial => "similar_items" unless @similar_items.empty? %>
+<!-- All people can see similar item-->
+<% if logged_in?  %>
+  <div class="row">
+    <div class="small-10 small-offset-1 columns">
+      <%= render :partial => "similar_items" unless @similar_items.empty? %>
+    </div>
   </div>
-</div>
 <% end %>
 

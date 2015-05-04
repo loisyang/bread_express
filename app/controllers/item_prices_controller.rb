@@ -9,7 +9,9 @@ class ItemPricesController < ApplicationController
   end
 
   def new
+    item = params[:item_param]
     @item_price = ItemPrice.new
+    @item = item
     authorize! :new, @item_price    
   end
 

@@ -14,7 +14,11 @@
   </div>    
     <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to 'Cancel', items_path, :class => 'button alert radius' %>
+      <% if @item.name.nil? %>
+        <%= link_to 'Back to all items', items_path, :class => 'button alert radius' %>
+      <% else %>
+        <%= link_to 'Cancel', item_path(@item), :class => 'button alert radius' %>
+      <% end %>
     </div>
   </fieldset>
 <% end %>
