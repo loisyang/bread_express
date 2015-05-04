@@ -47,6 +47,9 @@ class OrdersController < ApplicationController
     @order.date = Date.today
     if @order.save
       @order.pay
+      save_each_item_in_cart(@order)
+      destroy_cart
+      create_cart
       redirect_to @order, notice: "Thank you for ordering from Bread Express."
     else
       render action: 'new'

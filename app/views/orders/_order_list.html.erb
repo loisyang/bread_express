@@ -15,7 +15,8 @@
           <td><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
           <td><%= link_to order.address.recipient, address_path(order.address) %></td>
           <td>
-            <% order.order_items.each do |oi| %>
+<!--             <%= order.order_items %>
+ -->            <% order.order_items.each do |oi| %>
               <%= oi.quantity %> <%= oi.item.name %><br />
             <% end %>
           </td>
