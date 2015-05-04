@@ -9,11 +9,13 @@
 <%= simple_form_for @order, html: { class: 'form-horizontal' } do |f| %>
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Order</legend>
-    <%= f.input :customer_id,as: :hidden,input_html: { value: @customer} %>
-    <%= f.input :date, as: :hidden, input_html: { value: Date.today }%>
-    <%= f.input :address_id, collection: get_address_options_for_customer(@customer), include_blank: true, input_html: {class: "avg"} %>     
+    <%= f.input :address_id, collection: get_address_options_for_customer(@customer), include_blank: true, input_html: {class: "avg"} %>
+    
+    <%= f.input :credit_card_number, input_html: { class: "avg" }%>
+    <%= f.input :expiration_year, input_html: { class: "avg" }%>
+    <%= f.input :expiration_month, input_html: { class: "avg" }%>
     <div class="form-actions">
-      <%= f.submit 'Preceed to pay', :class => 'sans-serif button radius' %>
+      <%= f.submit 'Pay', :class => 'sans-serif button radius' %>
       <%= link_to 'Back to cart', show_current_cart_path, :class => 'button secondary radius' %>
     </div>
   </fieldset>

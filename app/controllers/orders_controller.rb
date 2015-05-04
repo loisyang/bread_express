@@ -36,10 +36,17 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @customer = Customer.find_by(user_id: @current_user.id)
+    @shipping_cost = calculate_cart_shipping
+    @cart_cost = calculate_cart_items_cost
+    @grand_total = @shipping_cost + @cart_cost
+
     @order = Order.new(order_params)
-
+    @order.grand_total = @grand_total
+    @order.customer_id = @customer.id
+    @order.date = Date.today
     if @order.save
-
+      @order.pay
       redirect_to @order, notice: "Thank you for ordering from Bread Express."
     else
       render action: 'new'
@@ -65,6 +72,8 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:address_id)
+    params[:order][:expiration_month] = params[:order][:expiration_month].to_i 
+    params[:order][:expiration_year] = params[:order][:expiration_year].to_i 
+    params.require(:order).permit(:address_id, :credit_card_number, :expiration_year, :expiration_month, :customer_id)
   end
 end

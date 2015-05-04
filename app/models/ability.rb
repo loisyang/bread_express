@@ -22,7 +22,7 @@ class Ability
       
       # they can read their own orders' data
       can :read, Order do |this_order|  
-        my_orders = user.orders.map(&:id)
+        my_orders = Customer.find_by(user_id: user.id).orders.map(&:id)
         my_orders.include? this_order.id 
       end
 
