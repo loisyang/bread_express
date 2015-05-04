@@ -21,6 +21,11 @@
 .italic{
   font-style: italic;
 }
+
+/* some image style*/
+.img-resize{
+  width: 400px;
+}
 footer {
   padding-top: 2%;
 }
@@ -140,4 +145,5 @@ footer {
 #footer a:hover{
   color: #afafaf;
 }
+
 

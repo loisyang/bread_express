@@ -9,14 +9,14 @@
   </thead>
   <tbody>
     <% @similar_items.each do |item| %>
-      <% if can? :read, item %>
+      <% if (can? :read, item) && (item != @item)%>
         <tr>
           <td><%= link_to item.name, item_path(item) %></td>
           <td>
             <% if item.picture_url == nil%>
-              <p>N/A</p>
+              <p><%= image_tag ('placeholder.png'),class: "img-resize"%></p>
             <% else %>
-              <%= image_tag item.picture_url %>
+              <%= image_tag (item.picture_url), class: "img-resize" %>
             <% end %>
           </td>
           <td><%= item.description unless item.description == nil %></td>

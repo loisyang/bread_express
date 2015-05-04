@@ -8,8 +8,15 @@ BreadExpress::Application.routes.draw do
   resources :sessions
   resources :users
   resources :item_prices
+  resources :carts
 
-    # Authentication routes
+  # Authentication routes
+  get 'cart/newCartItem' => 'carts#newCartItem', as: :newCartItem_cart
+  get 'cart' => 'carts#show'
+  get 'cart/show' => 'carts#show', as: :show_current_cart
+  delete 'cart/show' => 'carts#destory'
+  put 'cart/show' => 'carts#add'
+  get 'cart/edit' => 'carts#edit', as: :edit_current_cart  
   get 'user/edit' => 'users#edit', as: :edit_current_user
   get 'signup' => 'users#new', as: :signup
   get 'logout' => 'sessions#destroy', as: :logout
@@ -29,8 +36,6 @@ BreadExpress::Application.routes.draw do
   # Named routes
   get 'item/index' => 'item#index'
 
-
-  
   # Last route in routes.rb that essentially handles routing errors
   get '*a', to: 'errors#routing'
 end

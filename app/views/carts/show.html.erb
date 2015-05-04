@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="small-10 small-offset-1 columns">
+    <% if @cart_items.nil? %>
+      <h4 class="text-centered">There are no items in cart.</h4> 
+    <% else %>
+      <h4>Your Cart</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="225">Item</th>
+            <th width="225">Items Per Unit</th>
+            <th width="200">Units</th>
+            <th width="200">Price</th>            
+            <th width="400">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |orderItem| %>
+          <% item_id = orderItem.item_id%>
+          <% quantity = orderItem.quantity %>          
+            <tr>
+              <td><%= Item.find_by(id: item_id).name%></td>
+              <td><%= Item.find_by(id: item_id).units_per_item%></td>
+              <td><%= quantity %></td>
+              <td>$<%= Item.find_by(id: item_id).current_price %></td>
+              <td>
+                <%= link_to 'Add One More', show_current_cart_path(:item_param => item_id), method: 'put',:item_param => item_id, class: "button secondary tiny radius" %>
+                <%= link_to 'Delete This Item', show_current_cart_path(:item_param => item_id), method: 'delete', class: 'button tiny radius alert', data: {confirm: "Are you sure you want to delete this item from cart?"} %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <h4><b>Total Cost:</b> $<%= @cart_cost%></h4>
+      <%= link_to(new_order_path, class: 'button radius ') do %>Check Out<% end %></p>
+    <% end %>
+  </div>
+</div>

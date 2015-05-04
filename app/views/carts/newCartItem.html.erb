@@ -1,0 +1,24 @@
+<!-- on the left, show the latest item; on the right show checkout -->
+<div class="row">
+  <div class="small-5 small-offset-1 columns">
+    <h3>1 item added to Cart:</h3>
+    <h4><%= @item.name %></h4>
+    <% if @item.picture_url.nil? %>
+      <p><%= image_tag ('placeholder.png'), class: "img-resize"%></p>
+    <% else %>
+      <p><%= image_tag @item.picture_url, class: "img-resize" %></p>
+    <% end %>
+    <p><b>Price:</b> $<%= @item.current_price %></p>
+  </div>
+  <div class="small-5  columns">
+    <h3>Your Cart:</h3>  
+    <h4>Total Cost:</b> $<%= @cart_cost %></h4>
+    <p>There are <%= @number_cart_items %> items in cart.</p>
+    <p><%= link_to(show_current_cart_path, class: 'button radius ') do %>View Cart<% end %>   
+    <%= link_to(new_order_path, class: 'button radius ') do %>Check Out<% end %></p>
+</div>
+
+<!-- get the total quantity and cost of the current cart -->
+<div class="row">
+
+</div>
