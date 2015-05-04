@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th width="225">Item</th>
+      <th width="225">Items Per Unit</th>
+      <th width="200">Units</th>
+      <th width="200">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart_items.each do |orderItem| %>
+    <% item_id = orderItem.item_id%>
+    <% quantity = orderItem.quantity %>          
+      <tr>
+        <td><%= Item.find_by(id: item_id).name%></td>
+        <td><%= Item.find_by(id: item_id).units_per_item%></td>
+        <td><%= quantity %></td>
+        <td>$<%= Item.find_by(id: item_id).current_price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

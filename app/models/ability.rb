@@ -25,6 +25,8 @@ class Ability
         my_orders = user.orders.map(&:id)
         my_orders.include? this_order.id 
       end
+
+      can :create, Order
       # they can create new addresses for themselves
       can :create, Address
       

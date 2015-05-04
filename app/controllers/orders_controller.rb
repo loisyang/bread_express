@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   include BreadExpressHelpers::Cart
+  include BreadExpressHelpers::Shipping
 
   before_action :check_login
   before_action :set_order, only: [:show, :update, :destroy]
@@ -26,6 +27,11 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @cart_items = get_list_of_items_in_cart
+    @customer = Customer.find_by(user_id: @current_user.id)
+    @shipping_cost = calculate_cart_shipping
+    @cart_cost = calculate_cart_items_cost
+    @grand_total = @shipping_cost + @cart_cost
     save_each_item_in_cart(@order)
   end
 
@@ -61,11 +67,4 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:address_id)
   end
-
-
-
-
-
-
-
 end
