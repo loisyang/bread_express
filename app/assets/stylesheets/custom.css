@@ -13,7 +13,9 @@
 
 .sans-serif{
   font-family: 'Lato', sans-serif;
- 
+}
+.bold {
+  font-weight: 700;
 }
 .cursive{
   font-family: 'Rock Salt', cursive;   
@@ -101,8 +103,9 @@ footer {
 }
 
 #landing_page {
+  background-repeat: no-repeat;
   min-height: 700px;
-  background-image: url("landing_page.jpg");
+  background-image: url("landing_page4.jpg");
 }
 
 #landing_page .textbox{
@@ -150,3 +153,6 @@ footer {
   padding-top: 4%;
 }
 
+.padding-bottom{
+  padding-bottom: 4%;
+}

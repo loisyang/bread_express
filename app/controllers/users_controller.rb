@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
+    authorize! :read, @user
     @users = User.alphabetical.paginate(:page => params[:page]).per_page(7)
   end
 
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    authorize! :read, @user
   	@user= current_user
   end
 
@@ -28,6 +30,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    authorize! :update, @user
   	@user = current_user
     if @user.update_attributes(user_params) # update_attribute is what?
       redirect_to home_path

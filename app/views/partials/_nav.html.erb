@@ -40,7 +40,9 @@
           <li class="has-dropdown">
           <%= link_to "Welcome, #{current_user.role.capitalize} #{current_user.username.capitalize}", user_path(current_user) %>
           <ul class="dropdown">
-            <li><%= link_to "Edit settings", edit_user_path(current_user) %></li>
+            <% if current_user.role? :customer %>
+              <li><%= link_to "Edit settings", edit_customer_path(current_user) %></li>
+            <% end %>
             <li><%= link_to "Logout", logout_path %></li>
           </ul>
           </li>

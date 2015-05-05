@@ -1,17 +1,17 @@
 <% if addresses.empty? %>
-  <p><em>There are no <%= state %> addresses at this time.</em></p>
+  <p class="text-centered bold"><em>There are no <%= state %> addresses at this time.</em></p>
 <% else %>
-<h2><%= state.capitalize %> Addresses</h2>
+<h2 class="serif text-centered"><%= state.capitalize %> Addresses</h2>
 <table class="table table-striped">
   <thead>
     <tr>
       <% unless current_user.role?(:customer) %>
         <th>Customer</th>
       <% end %>
-      <th>Recipient</th>
+      <th width="200px">Recipient</th>
       <th>Address</th>
       <th>Billing?</th>
-      <th>&nbsp;</th>
+      <th width="100px">&nbsp;</th>
     </tr>
   </thead>
   <tbody>

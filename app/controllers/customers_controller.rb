@@ -2,23 +2,26 @@ class CustomersController < ApplicationController
   include ActionView::Helpers::NumberHelper
   before_action :check_login, except: [:new, :create]
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-  # authorize_resource
   
   def index
+    authorize! :index, @customer
     @active_customers = Customer.active.alphabetical.paginate(:page => params[:page]).per_page(10)
     @inactive_customers = Customer.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
   end
 
   def show
+    authorize! :show, @customer
     @previous_orders = @customer.orders.chronological
   end
 
   def new
+    # authorize! :new, @customer
     @customer = Customer.new
     @customer.build_user
   end
 
   def edit
+    authorize! :edit, @customer
     # reformat phone w/ dashes when displayed for editing (preference; not required)
     @customer.phone = number_to_phone(@customer.phone)
     # should have a user associated with customer, but just in case...
@@ -26,6 +29,7 @@ class CustomersController < ApplicationController
   end
 
   def create
+    # authorize! :create, @customer
     @customer = Customer.new(customer_params)
     @user = @customer.user
     if @customer.save
@@ -37,8 +41,9 @@ class CustomersController < ApplicationController
   end
 
   def update
+    authorize! :update, @customer
     # just in case customer trying to hack the http request...
-    reset_username_param unless current_user.role? :admin
+    # reset_username_param unless current_user.role? :admin
     if @customer.update(customer_params)
       redirect_to @customer, notice: "#{@customer.proper_name} was revised in the system."
     else

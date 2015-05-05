@@ -11,14 +11,14 @@ class Ability
       can :manage, :all
       
     elsif user.role? :customer
+
       # they can read their own profile
-      can :show, User do |u|  
+      can :read, Customer do |u|  
         u.id == user.id
       end
-      can :create, User
-      can :manage, Customer
+
       # they can update their own profile
-      can :update, User do |u|  
+      can :update, Customer do |u|  
         u.id == user.id
       end
       
@@ -26,6 +26,11 @@ class Ability
       can :read, Order do |this_order|  
         my_orders = Customer.find_by(user_id: user.id).orders.map(&:id)
         my_orders.include? this_order.id 
+      end
+
+      can :read, Address do |this_address|
+        my_addresses = Customer.find_by(user_id: user.id).addresses.map(&:id)
+        my_addresses = this_address.id
       end
 
       can :create, Order
@@ -63,9 +68,13 @@ class Ability
     elsif user.role? :shipper
 
     else
-      # guests can only read domains covered (plus home pages)
+      # guests can only browse items and sign up
       can :read, Item
       can :show, Item
+      can :new, User
+      can :new, Customer
+      can :create, User
+      can :create, Customer
     end
   end
 end
