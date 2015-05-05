@@ -15,6 +15,8 @@ class Ability
       can :show, User do |u|  
         u.id == user.id
       end
+      can :create, User
+      can :manage, Customer
       # they can update their own profile
       can :update, User do |u|  
         u.id == user.id
@@ -29,7 +31,6 @@ class Ability
       can :create, Order
       # they can create new addresses for themselves
       can :create, Address
-      
       can :read, Item
 
       cannot :new, Item

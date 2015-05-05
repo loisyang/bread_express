@@ -1,0 +1,7 @@
+<%= f.input :username %>
+
+<%= f.input :password %>
+<%= f.input :password_confirmation %>
+
+<%= f.input :active, as: :hidden, input_html: {value: true} %>
+<%= f.input :role, as: :hidden, input_html: {value: :customer} %>

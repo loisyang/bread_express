@@ -1,24 +1,26 @@
-<h3 class="text-centered">Login</h3>
-<div id="login">
-  <div class="row">
-    <div class="small-7 columns">
-      <%= form_tag sessions_path do %>
-        <div class="control-group">
-          <%= label_tag :username %>
-          <div class="controls">
-            <%= text_field_tag :username, params[:username] %>
+<div class="padding-top">
+  <h3 class="text-centered">Login</h3>
+  <div id="login">
+    <div class="row">
+      <div class="small-7 columns">
+        <%= form_tag sessions_path do %>
+          <div class="control-group">
+            <%= label_tag :username %>
+            <div class="controls">
+              <%= text_field_tag :username, params[:username] %>
+            </div>
           </div>
-        </div>
 
-        <div class="control-group">
-          <%= label_tag :password %>
-          <div class="controls">
-            <%= password_field_tag :password %>
+          <div class="control-group">
+            <%= label_tag :password %>
+            <div class="controls">
+              <%= password_field_tag :password %>
+            </div>
           </div>
-        </div>
-        
-        <input class="button round sans-serif" name="Login" type="submit" value="Log In" />
-      <% end %>
+          
+          <input class="button round sans-serif" name="Login" type="submit" value="Log In" />
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

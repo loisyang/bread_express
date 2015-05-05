@@ -19,7 +19,7 @@ BreadExpress::Application.routes.draw do
   put 'cart/show' => 'carts#add'
   get 'cart/edit' => 'carts#edit', as: :edit_current_cart  
   get 'user/edit' => 'users#edit', as: :edit_current_user
-  get 'signup' => 'users#new', as: :signup
+  get 'customer/new' => 'customers#new', as: :signup
   get 'logout' => 'sessions#destroy', as: :logout
   get 'login' => 'sessions#new', as: :login
 

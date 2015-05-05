@@ -29,17 +29,17 @@ class OrdersController < ApplicationController
     @order = Order.new
     @cart_items = get_list_of_items_in_cart
     @customer = Customer.find_by(user_id: @current_user.id)
-    @shipping_cost = calculate_cart_shipping
-    @cart_cost = calculate_cart_items_cost
-    @grand_total = @shipping_cost + @cart_cost
+    @shipping_cost = format_price(calculate_cart_shipping)
+    @cart_cost = format_price(calculate_cart_items_cost)
+    @grand_total = format_price(@shipping_cost + @cart_cost)
     save_each_item_in_cart(@order)
   end
 
   def create
     @customer = Customer.find_by(user_id: @current_user.id)
-    @shipping_cost = calculate_cart_shipping
-    @cart_cost = calculate_cart_items_cost
-    @grand_total = @shipping_cost + @cart_cost
+    @shipping_cost = format_price(calculate_cart_shipping)
+    @cart_cost = format_price(calculate_cart_items_cost)
+    @grand_total = format_price(@shipping_cost + @cart_cost)
 
     @order = Order.new(order_params)
     @order.grand_total = @grand_total
@@ -72,6 +72,10 @@ class OrdersController < ApplicationController
   private
   def set_order
     @order = Order.find(params[:id])
+  end
+
+  def format_price(price)
+    "$" + format('%.02f',price)
   end
 
   def order_params

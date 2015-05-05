@@ -12,9 +12,10 @@
   </div>
   <div class="small-5  columns">
     <h3>Your Cart:</h3>  
-    <h4>Total Cost:</b> $<%= @cart_cost %></h4>
+    <h4>Total Cost:</b> <%= @cart_cost %></h4>
     <p>There are <%= @number_cart_items %> items in cart.</p>
-    <p><%= link_to(show_current_cart_path, class: 'button radius ') do %>View Cart<% end %>   
+    <p><%= link_to('Continue Shopping', items_path, class: 'button radius') %>
+    <%= link_to('View Cart', show_current_cart_path, class: 'button radius ') %> 
     <%= link_to(new_order_path, class: 'button radius ') do %>Check Out<% end %></p>
 </div>
 

@@ -12,14 +12,18 @@
 <% if logged_in? && current_user.role?(:admin) %>
 	<div class="row">
 		<div class="medium-10 medium-offset-1 columns">
-      <h3 class="text-centered">Inactive Items</h3>
-			<%= render :partial => "inactive_items" unless @inactive_items.empty? %>
+      <% if @inactive_items.empty? %>
+        <h3 class="text-centered">No inactive items at this time.</h3>
+      <% else %>
+        <h3 class="text-centered">Inactive Items</h3>
+        <%= render :partial => "inactive_items" unless @inactive_items.empty? %>
+      <% end %>      
 		</div>
 	</div>
 
 	<!-- Add a button for new projects -->
   <div class="row">
-    <div class="medium_10 medium-offset-1 columns">
+    <div class="medium_1 medium-offset-5 columns">
     	<%= link_to(new_item_path, class: "button radius") do %>
     	  &nbsp;Add a New Item
     	<% end %>
