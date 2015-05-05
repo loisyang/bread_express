@@ -2,9 +2,9 @@
 <p>
   <h6> <b>Cart Summary</b></h6>
   <%= render :partial =>"order_items" %>
-  <h6> <b>Cart Costs:</b> <%= @cart_cost %> </h6>
-  <h6> <b>Shipping Costs:</b> <%= @shipping_cost %> </h6>
-  <h6> <b>Grand Total:</b> <%= @grand_total %> </h6>
+  <h6> <b>Cart Costs:</b> $<%= format('%.02f',@cart_cost) %> </h6>
+  <h6> <b>Shipping Costs:</b> $<%= format('%.02f',@shipping_cost) %> </h6>
+  <h6> <b>Grand Total:</b> $<%= format('%.02f',@grand_total) %> </h6>
 </p>
 <%= simple_form_for @order, html: { class: 'form-horizontal' } do |f| %>
   <fieldset>
@@ -20,3 +20,7 @@
     </div>
   </fieldset>
 <% end %>
+
+  def format_price(price)
+    format('%.02f',price)
+  end
