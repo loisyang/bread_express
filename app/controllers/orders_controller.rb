@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
   include BreadExpressHelpers::Cart
   include BreadExpressHelpers::Shipping
+  include BreadExpressHelpers::Baking
+
 
   before_action :check_login
   before_action :set_order, only: [:show, :update, :destroy]
@@ -10,6 +12,7 @@ class OrdersController < ApplicationController
     if logged_in? && !current_user.role?(:customer)
       @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
       @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(5)
+      get_baking_list
     else
       @pending_orders = current_user.customer.orders.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
       @all_orders = current_user.customer.orders.chronological.paginate(:page => params[:page]).per_page(5)
@@ -56,6 +59,13 @@ class OrdersController < ApplicationController
     end
   end
 
+  def mark_shipped
+    @order_item_id = params[:order_item_param]
+    @order_item = OrderItem.find_by(id: @order_item_id)
+    @order_item.shipped_on = Date.today
+    @order_item.save!
+  end
+
   def update
     if @order.update(order_params)
       redirect_to @order, notice: "Your order was revised in the system."
@@ -70,6 +80,12 @@ class OrdersController < ApplicationController
   end
 
   private
+  def get_baking_list
+    @muffins_baking_list = create_baking_list_for(:muffins)
+    @bread_baking_list = create_baking_list_for(:bread)
+    @pastries_baking_list = create_baking_list_for(:pastries)
+  end
+
   def set_order
     @order = Order.find(params[:id])
   end

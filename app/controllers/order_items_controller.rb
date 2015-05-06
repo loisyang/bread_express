@@ -11,6 +11,12 @@ class OrderItemsController < ApplicationController
     end
   end
 
+  # def check_shipped
+  #   @order_item = OrderItem.find(params[:id])
+  #   @order_item.shipped_on = Date.today
+  #   order_item.save!
+  # end
+
   private
   def order_item_params
     params.require(:order_item).permit(:item_id, :quantity, :order_id)

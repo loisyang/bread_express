@@ -36,6 +36,7 @@ BreadExpress::Application.routes.draw do
   
   # Named routes
   get 'item/index' => 'item#index'
+  get 'orders/mark_shipped' => 'orders#mark_shipped', as: :mark
 
   # Last route in routes.rb that essentially handles routing errors
   get '*a', to: 'errors#routing'

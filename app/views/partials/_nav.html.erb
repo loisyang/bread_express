@@ -7,6 +7,8 @@
         <li><%= link_to "Menu", items_path %></li>
         <% if logged_in? &&  current_user.role?(:shipper) %>
           <li><%= link_to "Shipping List", orders_path %></li>
+        <% elsif logged_in? &&  current_user.role?(:baker) %>
+          <li><%= link_to "Baking List", orders_path %></li>
         <% end %>
         <% if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer)) %>
 
@@ -58,7 +60,7 @@
         
       <ul class="right">
         <% if logged_in? %>
-          <% if current_user.role? :customer %>
+          <% if (current_user.role? :customer) %>
             <li><%= link_to "Cart", show_current_cart_path %></li>
           <% end %>
           <li class="has-dropdown">
@@ -66,6 +68,8 @@
           <ul class="dropdown">
             <% if current_user.role? :customer %>
               <li><%= link_to "Edit settings", edit_customer_path(current_user) %></li>
+            <% elsif (current_user.role? :admin) %>
+              <li><%= link_to "My Cart", show_current_cart_path %></li>
             <% end %>
             <li><%= link_to "Logout", logout_path %></li>
           </ul>

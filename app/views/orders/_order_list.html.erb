@@ -5,8 +5,9 @@
       <th width="100">Date</th>
       <th width="100">Recipient</th>
       <th width="125">Address</th>
-      <th width="250">Items</th>
+      <th width="200">Items</th>
       <th width="100">Cost</th>
+      <th width="50"></th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,7 @@
           <% end %>
         </td>
         <td><%= number_to_currency order.grand_total %></td>
+        <td><%= link_to 'Order Details', order_path(order), class: "button radius" %></td>
       </tr>
     <% end %>
   </tbody>

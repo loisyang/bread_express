@@ -1,0 +1,33 @@
+<div class="row padding-top">
+  <div class="small-10 small-offset-1 columns">
+    <h2>Baking List</h2>
+    <h2><%= @muffins_baking_list %></h2>
+    
+    <% if @muffins_baking_list.empty? %>
+      <h5><em>No muffins unbaked at this time.</em></h5>
+    <% else %>
+      <h3>Muffin</h3>
+      <% @muffins_baking_list.each do |item,quantity| %> 
+        <p><b><%= item %>:</b> <%=quantity %> units unbaked</p>
+      <% end %>
+    <% end %>
+
+    <% if @bread_baking_list.empty? %>
+      <h5><em>No bread unbaked at this time.</em></h5>
+    <% else %>
+      <h3>Bread</h3>
+      <% @bread_baking_list.each do |item,quantity| %> 
+        <p><b><%= item %>:</b> <%=quantity %> units unbaked</p>
+      <% end %>
+    <% end %>
+
+    <% if @pastries_baking_list.empty? %>
+      <h5><em>No pastries unbaked at this time.</em></h5>
+    <% else %>
+      <h3>Pastries</h3>
+      <% @pastries_baking_list.each do |item,quantity| %> 
+        <p><b><%= item %>:</b> <%=quantity %> units unbaked</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

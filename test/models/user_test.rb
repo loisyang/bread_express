@@ -29,6 +29,10 @@ class UserTest < ActiveSupport::TestCase
       destroy_employee_users
     end
 
+    should "have working class method for authenication" do 
+      deny User.authenticate("alexe", "password")
+    end
+
     should "require users to have unique, case-insensitive usernames" do
       assert_equal "mark", @mark.username
       # try to switch to Alex's username 'tank'
@@ -46,6 +50,8 @@ class UserTest < ActiveSupport::TestCase
       deny bad_user_1.valid?
       bad_user_2 = FactoryGirl.build(:user, username: "wheezy", password: "secret", password_confirmation: "sauce")
       deny bad_user_2.valid?
+      good_user = FactoryGirl.build(:user, username: "wheezy", password: "secret", password_confirmation: "secret")
+      assert good_user.valid?
     end
     
     should "require passwords to be at least four characters" do

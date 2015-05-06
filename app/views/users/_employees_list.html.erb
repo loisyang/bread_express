@@ -13,7 +13,7 @@
       <tbody>
         <% @employees.each do |employee| %>
           <tr>
-            <td><%= employee.username %></td>
+            <td><%= link_to employee.username, user_path(employee) %></td>
             <td><%= employee.role %></td>
             <td><%= employee.active==true ? "Yes" : "No"  %></td>
             <td><%= link_to 'Edit', edit_user_path(employee), class: "button radius tiny" %></td>

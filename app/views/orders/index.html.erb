@@ -1,6 +1,12 @@
-<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer)) %>
+<% if logged_in? && current_user.role?(:customer) %>
   <%= render partial: "partials/index_structure", locals: {model_name: "order", primary: "pending_orders", secondary: "past_orders",sidebar: nil} %>
 <% elsif logged_in? && current_user.role?(:shipper) %>
   <%= render partial: "shipping_list" %>
+<% elsif logged_in? && current_user.role?(:baker) %>
+  <%= render partial: "baking_list" %>
+<% elsif logged_in? && current_user.role?(:admin) %>
+  <%= render partial: "partials/index_structure", locals: {model_name: "order", primary: "pending_orders", secondary: "past_orders",sidebar: nil} %>
+  <%= render partial: "shipping_list" %>
+  <%= render partial: "baking_list" %>
 <% end %>
 

@@ -66,11 +66,13 @@ class Ability
     elsif user.role? :baker
       can :read, Item
       can :show, Item
+      can :manage, Order
 
     elsif user.role? :shipper
       can :read, Item
       can :show, Item
-      can :read, Order
+      can :manage, Order
+      can :manage, OrderItem
 
     else
       # guests can only browse items and sign up
