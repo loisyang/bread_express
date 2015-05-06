@@ -5,8 +5,8 @@
 <% elsif logged_in? && current_user.role?(:baker) %>
   <%= render partial: "baking_list" %>
 <% elsif logged_in? && current_user.role?(:admin) %>
-  <%= render partial: "partials/index_structure", locals: {model_name: "order", primary: "pending_orders", secondary: "past_orders",sidebar: nil} %>
-  <%= render partial: "shipping_list" %>
   <%= render partial: "baking_list" %>
+  <%= render partial: "shipping_list" %>
+  <%= render partial: "partials/index_structure", locals: {model_name: "order", primary: "pending_orders", secondary: "past_orders",sidebar: nil} %>
 <% end %>
 

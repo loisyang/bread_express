@@ -20,7 +20,7 @@
         <% if (current_user.role? :shipper) || (current_user.role? :admin)  %>
           <td>
             <% if oi.shipped_on.nil? %>
-              <%= link_to 'check', mark_path(oi.id), class: 'button radius' %>
+              <%= link_to 'Mark Shipped', mark_path(oi.id), class: 'button radius' %>
             <% else %>
               <h3>shipped</h3>
             <% end %>

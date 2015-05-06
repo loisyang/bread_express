@@ -79,13 +79,17 @@ class OrdersController < ApplicationController
     redirect_to orders_url, notice: "This order was removed from the system."
   end
 
-  private
+
   def get_baking_list
     @muffins_baking_list = create_baking_list_for(:muffins)
+      # puts "@muffins_baking_list: ", @muffins_baking_list
     @bread_baking_list = create_baking_list_for(:bread)
+      # puts "@bread_baking_list: ", @bread_baking_list
     @pastries_baking_list = create_baking_list_for(:pastries)
+      # puts "@pastries_baking_list: ", @pastries_baking_list
   end
-
+  
+  private
   def set_order
     @order = Order.find(params[:id])
   end

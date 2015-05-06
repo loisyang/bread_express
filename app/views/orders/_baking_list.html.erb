@@ -1,32 +1,31 @@
 <div class="row padding-top">
-  <div class="small-10 small-offset-1 columns">
-    <h2>Baking List</h2>
-    <h2><%= @muffins_baking_list %></h2>
+  <div class="small-8 small-offset-2 columns">
+    <h3 class="text-centered">Baking List</h3>
     
     <% if @muffins_baking_list.empty? %>
       <h5><em>No muffins unbaked at this time.</em></h5>
     <% else %>
-      <h3>Muffin</h3>
+      <h4><b>Muffin</b></h4>
       <% @muffins_baking_list.each do |item,quantity| %> 
-        <p><b><%= item %>:</b> <%=quantity %> units unbaked</p>
+        <p><b><%= item %>:</b> <%=quantity/2 %> units unbaked</p>
       <% end %>
     <% end %>
 
     <% if @bread_baking_list.empty? %>
-      <h5><em>No bread unbaked at this time.</em></h5>
+      <h4><b>No bread unbaked at this time.</b></h4>
     <% else %>
-      <h3>Bread</h3>
+      <h4><b>Bread</b></h4>
       <% @bread_baking_list.each do |item,quantity| %> 
-        <p><b><%= item %>:</b> <%=quantity %> units unbaked</p>
+        <p><b><%= item %>:</b> <%=quantity/2 %> units unbaked</p>
       <% end %>
     <% end %>
 
     <% if @pastries_baking_list.empty? %>
-      <h5><em>No pastries unbaked at this time.</em></h5>
+      <h4><b>No pastries unbaked at this time.</b></h4>
     <% else %>
-      <h3>Pastries</h3>
+      <h4><b>Pastries</b></h4>
       <% @pastries_baking_list.each do |item,quantity| %> 
-        <p><b><%= item %>:</b> <%=quantity %> units unbaked</p>
+        <p><b><%= item %>:</b> <%=quantity/2 %> units unbaked</p>
       <% end %>
     <% end %>
   </div>
