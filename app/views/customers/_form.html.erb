@@ -2,10 +2,8 @@
   <h3 class="text-centered padding-top"><%= controller.action_name.capitalize %> Account</h3>
   <fieldset>
     <%= customer_form.simple_fields_for :user do |user_form| %>
-      <% unless logged_in? %>
-        <%= render :partial => "user_fields", :locals => { :f => user_form } %>
-      <% end %> 
-    <% end %>
+      <%= render :partial => "user_fields", :locals => { :f => user_form } %>
+    <% end %> 
     <%= render :partial => "customer_fields", :locals => { :f => customer_form } %>
     <div class="form-actions">
       <%= customer_form.submit nil, :class => 'button radius sans-serif' %>

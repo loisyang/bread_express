@@ -1,10 +1,12 @@
 <div class="row">
-  <div class="small-7 columns">
+  <div class="small-7 columns padding-top">
     <%= render :partial => "order_details" %>
   </div>
-  <div class="small-5 columns">
-    <%= render partial: "previous_orders", locals: {previous_orders: @previous_orders}  unless @previous_orders.empty?%>
-  </div>
+  <% unless (logged_in? && current_user.role?(:shipper)) %>
+    <div class="small-5 columns padding-top">
+      <%= render partial: "previous_orders", locals: {previous_orders: @previous_orders}  unless @previous_orders.empty?%>
+    </div>
+  <% end %>
 </div>
 
 <% if logged_in? && current_user.role?(:customer) %>
@@ -13,6 +15,4 @@
       &nbsp;Return to My Orders
     <% end %>
   </div>
-<% else %>
-  <%= render partial: "object_options", locals: {model_name: "order", object: @order}  %>
 <% end %>

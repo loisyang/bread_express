@@ -1,0 +1,10 @@
+<div class="row padding-top">
+  <div class="small-10 small-offset-1 columns">
+    <% if @pending_orders.empty? %>
+      <h5><em>No unshipped orders at this time.</em></h5>
+    <% else %>
+      <%= render :partial => "order_list", locals: {status: 'Unshipped', orders: @pending_orders} %> 
+      <br />
+    <% end %>
+  </div>
+</div>

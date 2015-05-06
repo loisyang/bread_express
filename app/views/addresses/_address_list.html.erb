@@ -1,17 +1,17 @@
 <% if addresses.empty? %>
   <p class="text-centered bold"><em>There are no <%= state %> addresses at this time.</em></p>
 <% else %>
-<h2 class="serif text-centered"><%= state.capitalize %> Addresses</h2>
+<h3 class="text-centered"><%= state.capitalize %> Addresses</h3>
 <table class="table table-striped">
   <thead>
     <tr>
       <% unless current_user.role?(:customer) %>
         <th>Customer</th>
       <% end %>
-      <th width="200px">Recipient</th>
-      <th>Address</th>
+      <th width="130px">Recipient</th>
+      <th width="200px">Address</th>
       <th>Billing?</th>
-      <th width="100px">&nbsp;</th>
+      <th width="200px">&nbsp;</th>
     </tr>
   </thead>
   <tbody>
@@ -26,6 +26,9 @@
         </td>
         <td><%= address.is_billing ? "Yes" : "No" %></td>      
         <td>
+          <%= link_to(address_path(address), class: 'button tiny radius') do %>
+            &nbsp;View Details&nbsp;
+          <% end %>
           <%= link_to(edit_address_path(address), class: 'button tiny radius warning') do %>
             &nbsp;Edit&nbsp;
           <% end %>

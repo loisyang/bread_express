@@ -1,2 +1,8 @@
-<%= render :partial => 'general_home' %>
+<% if (!logged_in?) || (logged_in? &&( current_user.role? :customer)) %>
+  <%= render :partial => 'general_home' %>
+<% elsif logged_in? &&( current_user.role? :admin) %>
+  <%= render :partial => 'admin_home_page' %>
+<% elsif logged_in? &&( current_user.role? :baker) %>
+  <%= render :partial => 'baker_home_page' %>
+<% end %>
 

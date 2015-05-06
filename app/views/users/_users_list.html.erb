@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="small-10 small-offset-1 columns">
+    <% if @employees.empty? %>
+      <h2>No active employees at this time.</h2>
+    <% else %>
+      <%= render :partial => "employees_list" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-4 small-offset-5 columns">
+    <%= link_to "Add A New User", new_user_path, class: "button radius" %>
+  </div>
+</div>

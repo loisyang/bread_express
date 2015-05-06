@@ -1,0 +1,25 @@
+<div class="row padding-top">
+  <div class="small-4 small-offset-4 columns">
+    <h4 class="text-centered">All Employees</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th width="225">Username</th>
+          <th width="125">Role</th>
+          <th width="200">Active</th>
+          <th width="200"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employees.each do |employee| %>
+          <tr>
+            <td><%= employee.username %></td>
+            <td><%= employee.role %></td>
+            <td><%= employee.active==true ? "Yes" : "No"  %></td>
+            <td><%= link_to 'Edit', edit_user_path(employee), class: "button radius tiny" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -4,8 +4,12 @@
       <ul class="left">
         <!-- link to home -->
         <li><%= link_to "Home", home_path %></li>
-        <li><%= link_to "View Menu", items_path %></li>
+        <li><%= link_to "Menu", items_path %></li>
+        <% if logged_in? &&  current_user.role?(:shipper) %>
+          <li><%= link_to "Shipping List", orders_path %></li>
+        <% end %>
         <% if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer)) %>
+
           <!-- options for orders -->
           <li class="has-dropdown">
             <%= link_to "Orders", orders_path %>
@@ -26,9 +30,29 @@
         <% end %>
 
         <!-- ADMIN ONLY OPTIONS -->
-        <% if logged_in? && current_user.role == "admin" %>
-            <li><%= link_to "Items", items_path %></li>
+        <% if logged_in? && current_user.role?(:admin) %>
+            <li class="has-dropdown">
+              <%= link_to "Items", items_path %>
+              <ul class="dropdown">
+                <li><%= link_to "All Items", items_path %></li>
+                <li><%= link_to "Add an Item", new_item_path %></li>
+              </ul>
+            </li>
             <li><%= link_to "Finance", item_prices_path %></li>
+            <li class="has-dropdown">
+              <%= link_to "Customers", customers_path %>
+              <ul class="dropdown">
+                <li><%= link_to "All Customers", customers_path %></li>
+                <li><%= link_to "Add a Customer", new_customer_path %></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <%= link_to "Employees", users_path %>
+              <ul class="dropdown">
+                <li><%= link_to "All Employees", users_path %></li>
+                <li><%= link_to "Add an Employee", new_user_path %></li>
+              </ul>
+            </li>
         <% end %>
       </ul>
         

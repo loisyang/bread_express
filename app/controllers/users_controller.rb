@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
   def index
     authorize! :read, @user
-    @users = User.alphabetical.paginate(:page => params[:page]).per_page(7)
+    @users = User.by_role.alphabetical.paginate(:page => params[:page]).per_page(7)
+    @employees = User.employees
   end
 
   def show

@@ -1,19 +1,19 @@
 <% if logged_in? && current_user.role?(:admin) %>
   
-  <div class="row">
-    <div class="medium-10 medium-offset-1 columns">
+  <div class="row padding-top padding-bottom">
+    <div class="medium-6 medium-offset-3 columns">
       <% if @all_item_prices.empty? %>
         <h3>No item prices at this time.</h3>
       <% else %>
-        <h3>Available Item Prices</h3>
+        <h3 class="text-centered">Available Item Prices</h3>
         <%= render :partial => "all_item_prices" %>
       <% end %>
     </div>
   </div>
   
-  <div class="row">
-    <div class="medium-10 medium-offset-1 columns">
-      <h3>Current Item Prices</h3>
+  <div class="row padding-top padding-bottom">
+    <div class="medium-6 medium-offset-3 columns">
+      <h3 class="text-centered">Current Item Prices</h3>
       <%= render :partial => "current_item_prices" unless @current_item_prices.empty? %>
     </div>
   </div>

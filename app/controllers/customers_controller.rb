@@ -51,6 +51,16 @@ class CustomersController < ApplicationController
     end
   end
 
+  def destroy
+    @customer = Customer.find(params[:id])
+    status = @customer.destroy
+    if status
+    else
+      flash[:error] = "#{@customer.name} could not be deleted, but has been inactive as of today."
+    end
+    redirect_to :action => "index"
+  end
+
   private
   def set_customer
     @customer = Customer.find(params[:id])
